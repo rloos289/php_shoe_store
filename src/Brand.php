@@ -61,6 +61,11 @@
             $GLOBALS['DB']->exec("INSERT INTO stores_brands (brand_id, store_id) VALUES ({$this->id}, {$store->getId()});");
         }
 
+        function deleteStore($store)
+        {
+            $GLOBALS['DB']->exec("DELETE FROM stores_brands WHERE brand_id = {$this->id} AND store_id = {$store->getId()};");
+        }
+
         function getStorelist()
         {
             $returned_stores = $GLOBALS['DB']->query("SELECT stores.* FROM brands
@@ -68,7 +73,6 @@
                 JOIN stores ON (stores.id = stores_brands.store_id)
                 WHERE brands.id = {$this->getId()};");
                 //query doesnt throw errors but doesnt seem to make connection either
-
             $store_array = array();
             foreach ($returned_stores as $store)
             {
@@ -78,13 +82,6 @@
                 array_push($store_array, $new_store);
             }
             return $store_array;
-        }
-
-        function deleteStore($store)
-        {
-            $GLOBALS['DB']->exec("DELETE FROM stores_brands WHERE brand_id = {$this->id} AND store_id = {$store->getId()};");
-
-            // $GLOBALS['DB']->exec("DELETE FROM students_courses WHERE course_id = {$this->id} AND student_id = {$student->getId()}; ");
         }
 
 //--getters and setters--
