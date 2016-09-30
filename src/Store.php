@@ -15,12 +15,21 @@
 
         static function getall()
         {
-
+            $store_array = array();
+            $returned_stores = $GLOBALS['DB']->query("SELECT * FROM stores;");
+            foreach ($returned_stores as $store)
+            {
+                $id = $store['id'];
+                $name = $store['name'];
+                $new_store = New Store ($name, $id);
+                array_push($store_array, $new_store);
+            }
+            return $store_array;
         }
 
         static function deleteAll()
         {
-
+            $GLOBALS['DB']->exec("DELETE FROM stores;");
         }
 
         static function find()
@@ -32,7 +41,8 @@
 
         function save()
         {
-
+            $GLOBALS['DB']->exec("INSERT INTO stores (name) VALUES ('{$this->getName()}')");
+            $this->id= $GLOBALS['DB']->lastInsertId();
         }
 
         function delete()
