@@ -7,9 +7,11 @@
     {% if brands is not empty%}
         <h1>Brands</h1>
         <a href='/addbrands'><button type="button" name="button">Add a brand</button></a>
+        <ul>
         {% for brand in brands %}
             <a href='/brands/{{brand.getId}}'><li> {{brand.getName}}</li></a>
         {% endfor %}
+        </ul>
     {% else %}
         <h1>Brands</h1>
         <p>There are no brands in the system yet</p>
@@ -19,9 +21,11 @@
     {% if stores is not empty%}
         <h1>Stores</h1>
         <a href='/addstores'><button type="button" name="button">Add a store</button></a>
+        <ul>
         {% for store in stores %}
             <a href='/stores/{{store.getId}}'><li> {{store.getName}}</li></a>
         {% endfor %}
+        </ul>
     {% else %}
         <h1>Stores</h1>
         <p>There are no stores in the system yet</p>

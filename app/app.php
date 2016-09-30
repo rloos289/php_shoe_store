@@ -51,6 +51,29 @@
         return $app->redirect('/');
     });
 
+    $app->get("addbrands/{store_id}", function($store_id) use ($app){
+        //takes brand and adds it to a store
+        // $name = $_POST['brand_input'];
+        // $new_brand = New Brand ($name);
+        // $new_brand->save();
+        $store = Store::find($store_id);
+        $brands = $store->getBrandlist();
+        return $app['twig']->render ("addbrands.html.twig", array('store' => $store, 'brands' => $brands));
+    });
+
+    $app->get("addbrands/{store_id}", function($store_id) use ($app){
+        //takes brand and adds it to a store
+        $name = $_POST['brand_input'];
+        $new_brand = New Brand ($name);
+        $brand = Brand::find($)
+        $new_brand->save();
+        $store = Store::find($store_id);
+        $store->addbrand($new_brand);
+        $brands = $store->getBrandlist();
+        return $app['twig']->render ("store.html.twig", array('store' => $store, 'brands' => $brands));
+
+    });
+
     //stores pages
     $app->get("addstores", function() use ($app) {
         // goes to page to add a store
@@ -69,7 +92,7 @@
     $app->get("/stores/{store_id}", function($store_id) use ($app) {
         //lists every brand in this store
         $store = Store::find($store_id);
-        $brands->getBrandlist();
+        $brands = $store->getBrandlist();
         return $app['twig']->render ("store.html.twig", array('store' => $store, 'brands' => $brands));
     });
 

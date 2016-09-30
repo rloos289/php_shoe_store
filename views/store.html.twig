@@ -6,5 +6,14 @@
     </head>
     <body>
         <h1>{{ store.getName }}</h1>
+        {% if brands is not empty%}
+        {% for brand in brands %}
+        <ul>
+            <a href='/brands/{{brand.getId}}'><li> {{brand.getName}}</li></a>
+        </ul>
+        {% endfor %}
+        {% endif %}
+        <a href='/addbrands/{{store.getId}}'><button type="button" name="button">Add a brand to this store</button></a>
+
     </body>
 </html>
