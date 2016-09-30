@@ -6,7 +6,7 @@
     */
 
     require_once "src/Store.php";
-    require_once "src/Shoe.php";
+    require_once "src/Brand.php";
 
     //Epicodus
     // $server = 'mysql:host=localhost;dbname=shoes_test';
@@ -20,7 +20,7 @@
     $password = 'root';
     $DB = new PDO($server, $username, $password);
 
-    class ShoeTest extends PHPUnit_Framework_TestCase
+    class BrandTest extends PHPUnit_Framework_TestCase
 
     //run test in terminal: ./vendor/bin/phpunit tests
 
@@ -31,49 +31,49 @@
         protected function teardown()
         {
             Store::deleteAll();
-            Shoe::deleteAll();
+            Brand::deleteAll();
         }
 //--static function tests--
 
         function test_getAll()
         {
             $name = "Nike";
-            $new_shoe = New Shoe ($name);
-            $new_shoe->save();
+            $new_brand = New Brand ($name);
+            $new_brand->save();
             $name2 = "Adidas";
-            $new_shoe2 = New Shoe ($name2);
-            $new_shoe2->save();
+            $new_brand2 = New Brand ($name2);
+            $new_brand2->save();
 
-            $result = Shoe::getAll();
+            $result = Brand::getAll();
 
-            $this->assertEquals([$new_shoe, $new_shoe2], $result);
+            $this->assertEquals([$new_brand, $new_brand2], $result);
         }
 
         function test_find()
         {
             $name = "Nike";
-            $new_shoe = New Shoe ($name);
-            $new_shoe->save();
+            $new_brand = New Brand ($name);
+            $new_brand->save();
             $name2 = "Adidas";
-            $new_shoe2 = New Shoe ($name2);
-            $new_shoe2->save();
+            $new_brand2 = New Brand ($name2);
+            $new_brand2->save();
 
-            $result = Shoe::find($new_shoe->getId());
+            $result = Brand::find($new_brand->getId());
 
-            $this->assertEquals($new_shoe,$result);
+            $this->assertEquals($new_brand,$result);
         }
 
         function test_deleteAll()
         {
             $name = "Nike";
-            $new_shoe = New Shoe ($name);
-            $new_shoe->save();
+            $new_brand = New Brand ($name);
+            $new_brand->save();
             $name2 = "Adidas";
-            $new_shoe2 = New Shoe ($name2);
-            $new_shoe2->save();
+            $new_brand2 = New Brand ($name2);
+            $new_brand2->save();
 
-            Shoe::deleteAll();
-            $result = Shoe::getAll();
+            Brand::deleteAll();
+            $result = Brand::getAll();
 
             $this->assertEquals([],$result);
         }
@@ -82,12 +82,12 @@
         function test_save()
         {
             $name = "Nike";
-            $new_shoe = New Shoe ($name);
-            $new_shoe->save();
+            $new_brand = New Brand ($name);
+            $new_brand->save();
 
-            $result = Shoe::getAll();
+            $result = Brand::getAll();
 
-            $this->assertEquals([$new_shoe], $result);
+            $this->assertEquals([$new_brand], $result);
         }
 
     }
