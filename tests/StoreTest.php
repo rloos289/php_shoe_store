@@ -78,7 +78,6 @@
             $this->assertEquals([],$result);
         }
 
-
 //--regular function tests
         function test_save()
         {
@@ -89,6 +88,21 @@
             $result = Store::getAll();
 
             $this->assertEquals([$new_store], $result);
+        }
+
+        function test_delete()
+        {
+            $name = "Nordstrom";
+            $new_store = New Store ($name);
+            $new_store->save();
+            $name2 = "Payless";
+            $new_store2 = New Store ($name2);
+            $new_store2->save();
+
+            $new_store->delete();
+            $result = Store::getAll();
+
+            $this->assertEquals([$new_store2], $result);            
         }
     }
 
