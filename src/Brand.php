@@ -56,14 +56,28 @@
 
 //--join table functions
 
-        function addStore()
+        function addStore($store)
         {
-
+            $GLOBALS['DB']->exec("INSERT INTO store_brands (store_id, brand_id) VALUES ({$this->id}, {$store->getId()});");
         }
 
         function getStorelist()
         {
+            $returned_stores = $GLOBALS['DB']->query("SELECT stores.* FROM brands
+                JOIN stores_brands ON (stores_brands.brand_id = store.id)
+                JOIN stores ON (brand.id = stores_brands.brand_id)
+                WHERE store.id = {$this->getId()};");
 
+            $store_array = array();
+            $returned_stores = $GLOBALS['DB']->query("SELECT * FROM stores;");
+            foreach ($returned_stores as $store)
+            {
+                $id = $store['id'];
+                $name = $store['name'];
+                $new_store = New Store ($name, $id);
+                array_push($store_array, $new_store);
+            }
+            return $store_array;
         }
 
         function deleteStore()
