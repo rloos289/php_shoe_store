@@ -102,7 +102,19 @@
             $new_store->delete();
             $result = Store::getAll();
 
-            $this->assertEquals([$new_store2], $result);            
+            $this->assertEquals([$new_store2], $result);
+        }
+
+        function test_update()
+        {
+            $name = "Nordstrom";
+            $new_store = New Store ($name);
+            $new_store->save();
+            $new_store->update("Nordstrom Rack");
+
+            $result = $new_store->getName();
+
+            $this->assertEquals("Nordstrom Rack", $result);
         }
     }
 
