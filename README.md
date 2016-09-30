@@ -32,7 +32,11 @@ Behavior | input | output
 | Create functionality that list all Brands | click | "Nike","Adidas" |
 | Create functionality that deletes all Brands | click | "" |
 | Be able to locate a Brand by a unique ID | 1 | "Nike" |
+| Be able to add a brand to a store| "Nike": "Nordstrom"| "Nike": "Nordstrom" |
+| Be able to delete a brand from a store| "Nike","Adidas": "Nordstrom"| "Nike": "Nordstrom" |
 | Create a function that allows a user to list all the Brands in a store | "Nordstrom"| "Nike","Adidas"|
+| Be able to add a store to a brand| "Nordstrom": "Nike" | "Nordstrom": "Nike" |
+| Be able to delete a store from a brand| "Nordstrom", "Payless": "Nike"| "Nordstrom": "Nike" |
 | Create a function that allows a user to list all the Stores that carry a certain brand | "Nike"| "Nordstrom","Payless"|
 
 
