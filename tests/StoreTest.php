@@ -28,12 +28,12 @@
     //then run phpunit tests
 
     {
-//--static function tests--
         protected function teardown()
         {
             Store::deleteAll();
             // Shoe::deleteAll();
         }
+//--static function tests--
 
         function test_getAll()
         {
@@ -61,6 +61,21 @@
             $result = Store::find($new_store->getId());
 
             $this->assertEquals($new_store,$result);
+        }
+
+        function test_deleteAll()
+        {
+            $name = "Nordstrom";
+            $new_store = New Store ($name);
+            $new_store->save();
+            $name2 = "Payless";
+            $new_store2 = New Store ($name2);
+            $new_store2->save();
+
+            Store::deleteAll();
+            $result = Store::getAll();
+
+            $this->assertEquals([],$result)
         }
 
 
