@@ -125,6 +125,26 @@
             $this->assertEquals([$new_store, $new_store2],$result);
         }
 
+        function test_deleteStore()
+        {
+            $name = "Nike";
+            $new_brand = New Brand ($name);
+            $new_brand->save();
+            $name = "Nordstrom";
+            $new_store = New Store ($name);
+            $new_store->save();
+            $name2 = "Payless";
+            $new_store2 = New Store ($name2);
+            $new_store2->save();
+
+            $new_brand->addStore($new_store);
+            $new_brand->addStore($new_store2);
+            $new_brand->deleteStore($new_store);
+            $result = $new_brand->getStorelist();
+
+            $this->assertEquals([$new_store2],$result);
+        }
+
     }
 
  ?>
