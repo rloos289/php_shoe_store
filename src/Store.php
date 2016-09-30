@@ -59,9 +59,10 @@
             $GLOBALS['DB']->exec("DELETE FROM stores WHERE id = {$this->getId()};");
         }
 
-        function update()
+        function update($name)
         {
-
+            $this->name = $name;
+            $GLOBALS['DB']->exec("UPDATE stores SET name = '{$this->name}' WHERE id = {$this->getId()};");
         }
 
 //--getters and setters--
