@@ -60,7 +60,7 @@
 
             $result = Store::find($new_store->getId());
 
-            $this->assertEquals([$new_store],$result);
+            $this->assertEquals($new_store,$result);
         }
 
 
