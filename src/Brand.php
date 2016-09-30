@@ -54,6 +54,23 @@
             $this->id= $GLOBALS['DB']->lastInsertId();
         }
 
+//--join table functions
+
+        function addStore()
+        {
+
+        }
+
+        function getStorelist()
+        {
+
+        }
+
+        function deleteStore()
+        {
+
+        }
+
 //--getters and setters--
         function setName($name)
         {
