@@ -75,7 +75,7 @@
             Store::deleteAll();
             $result = Store::getAll();
 
-            $this->assertEquals([],$result)
+            $this->assertEquals([],$result);
         }
 
 
