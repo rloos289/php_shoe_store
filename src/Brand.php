@@ -64,12 +64,12 @@
         function getStorelist()
         {
             $returned_stores = $GLOBALS['DB']->query("SELECT stores.* FROM brands
-                JOIN stores_brands ON (stores_brands.brand_id = store.id)
-                JOIN stores ON (brand.id = stores_brands.brand_id)
-                WHERE store.id = {$this->getId()};");
+                JOIN stores_brands ON (stores_brands.brand_id = brands.id)
+                JOIN stores ON (stores.id = stores_brands.store_id)
+                WHERE brands.id = {$this->getId()};");
+                //query doesnt throw errors but doesnt seem to make connection either ``
 
             $store_array = array();
-            $returned_stores = $GLOBALS['DB']->query("SELECT * FROM stores;");
             foreach ($returned_stores as $store)
             {
                 $id = $store['id'];
@@ -80,9 +80,11 @@
             return $store_array;
         }
 
-        function deleteStore()
+        function deleteStore($store)
         {
+            $GLOBALS['DB']->exec("DELETE FROM stores_brands WHERE brand_id = {$this->id} AND store_id = {$store->getId()};");
 
+            // $GLOBALS['DB']->exec("DELETE FROM students_courses WHERE course_id = {$this->id} AND student_id = {$student->getId()}; ");
         }
 
 //--getters and setters--

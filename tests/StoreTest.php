@@ -6,7 +6,7 @@
     */
 
     require_once "src/Store.php";
-    // require_once "src/Shoe.php";
+    require_once "src/Brand.php";
 
     //Epicodus
     // $server = 'mysql:host=localhost;dbname=shoes_test';
@@ -30,12 +30,12 @@
     {
         protected function teardown()
         {
-            Store::deleteAll();
-            // Shoe::deleteAll();
+            // Store::deleteAll();
+            // Brand::deleteAll();
         }
 //--static function tests--
 
-        function test_getAll()
+        function test_store_getAll()
         {
             $name = "Nordstrom";
             $new_store = New Store ($name);
@@ -49,7 +49,7 @@
             $this->assertEquals([$new_store, $new_store2], $result);
         }
 
-        function test_find()
+        function test_store_find()
         {
             $name = "Nordstrom";
             $new_store = New Store ($name);
@@ -63,7 +63,7 @@
             $this->assertEquals($new_store,$result);
         }
 
-        function test_deleteAll()
+        function test_store_deleteAll()
         {
             $name = "Nordstrom";
             $new_store = New Store ($name);
@@ -79,7 +79,7 @@
         }
 
 //--regular function tests
-        function test_save()
+        function test_store_save()
         {
             $name = "Nordstrom";
             $new_store = New Store ($name);
@@ -90,7 +90,7 @@
             $this->assertEquals([$new_store], $result);
         }
 
-        function test_delete()
+        function test_store_delete()
         {
             $name = "Nordstrom";
             $new_store = New Store ($name);
@@ -105,7 +105,7 @@
             $this->assertEquals([$new_store2], $result);
         }
 
-        function test_update()
+        function test_store_update()
         {
             $name = "Nordstrom";
             $new_store = New Store ($name);
