@@ -6,15 +6,16 @@
     */
 
     require_once "src/Store.php";
+    // require_once "src/Shoe.php";
 
     //Epicodus
-    // $server = 'mysql:host=localhost;dbname=shoe_test';
+    // $server = 'mysql:host=localhost;dbname=shoes_test';
     // $username = 'root';
     // $password = 'root';
     // $DB = new PDO($server, $username, $password);
 
     // home mac
-    $server = 'mysql:host=localhost:8889;dbname=shoe_test';
+    $server = 'mysql:host=localhost:8889;dbname=shoes_test';
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);
@@ -27,19 +28,36 @@
     //then run phpunit tests
 
     {
-      // Testcode example
-      //  function test_makeTitleCase_oneWord()
-      //  {
-      //      //Arrange
-      //      $test_TitleCaseGenerator = new Template;
-      //      $input = "beowulf";
-       //
-      //      //Act
-      //      $result = $test_TitleCaseGenerator->testTemplate($input);
-       //
-      //      //Assert
-      //      $this->assertEquals("Beowulf", $result);
-      //  }
-   }
+        protected function teardown()
+        {
+            Store::deleteAll();
+            // Shoe::deleteAll();
+        }
+
+        function test_save()
+        {
+            $name = "Nordstrom";
+            $new_store = New Store ($name);
+            $new_store->save();
+
+            $result = Store::getAll();
+
+            $this->assertEquals([$new_store], $result);
+        }
+
+        function test_getAll()
+        {
+            $name = "Nordstrom";
+            $new_store = New Store ($name);
+            $new_store->save();
+            $name2 = "Payless";
+            $new_store2 = New Store ($name2);
+            $new_store2->save();
+
+            $result = Store::getAll();
+
+            $this->assertEquals([$new_store, $new_store2], $result);
+        }
+    }
 
  ?>

@@ -5,13 +5,13 @@
     require_once __DIR__."/../src/Brand.php";
 
     //Epicodus
-    // $server = 'mysql:host=localhost;dbname=shoe_test';
+    // $server = 'mysql:host=localhost;dbname=shoes_test';
     // $username = 'root';
     // $password = 'root';
     // $DB = new PDO($server, $username, $password);
 
     //home mac
-    $server = 'mysql:host=localhost:8889;dbname=shoe_test';
+    $server = 'mysql:host=localhost:8889;dbname=shoes_test';
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);
