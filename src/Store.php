@@ -65,6 +65,23 @@
             $GLOBALS['DB']->exec("UPDATE stores SET name = '{$this->name}' WHERE id = {$this->getId()};");
         }
 
+//--join table functions
+
+        function addBrand($brand)
+        {
+
+        }
+
+        function deleteBrand($brand)
+        {
+
+        }
+
+        function getBrandlist()
+        {
+            
+        }
+
 //--getters and setters--
         function setName($name)
         {

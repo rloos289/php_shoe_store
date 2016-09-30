@@ -116,6 +116,64 @@
 
             $this->assertEquals("Nordstrom Rack", $result);
         }
+//--join table functions
+
+        function test_store_addBrand()
+        {
+            $store_name = "Nordstrom";
+            $new_store = New Store ($store_name);
+            $new_store->save();
+
+            $brand_name = "Nike";
+            $new_brand = New Brand ($brand_name);
+            $new_brand->save();
+
+            $new_store->addBrand($new_brand);
+            $result = $new_store->getBrandlist();
+
+            $this->assertEquals([$new_brand], $result);
+        }
+
+        function test_store_getBrandList()
+        {
+            $store_name = "Nordstrom";
+            $new_store = New Store ($store_name);
+            $new_store->save();
+
+            $brand_name = "Nike";
+            $new_brand = New Brand ($brand_name);
+            $new_brand->save();
+            $brand_name2 = "Adidas";
+            $new_brand2 = New Brand ($brand_name2);
+            $new_brand2->save();
+
+            $new_store->addBrand($new_brand);
+            $new_store->addBrand($new_brand2);
+            $result = $new_store->getBrandlist();
+
+            $this->assertEquals([$new_brand, $new_brand2], $result);
+        }
+
+        function test_store_deleteBrand()
+        {
+            $store_name = "Nordstrom";
+            $new_store = New Store ($store_name);
+            $new_store->save();
+
+            $brand_name = "Nike";
+            $new_brand = New Brand ($brand_name);
+            $new_brand->save();
+            $brand_name2 = "Adidas";
+            $new_brand2 = New Brand ($brand_name2);
+            $new_brand2->save();
+
+            $new_store->addBrand($new_brand);
+            $new_store->addBrand($new_brand2);
+            $new_store->deleteBrand($new_brand);
+            $result = $new_store->getBrandlist();
+
+            $this->assertEquals([$new_brand2], $result);
+        }
     }
 
  ?>
