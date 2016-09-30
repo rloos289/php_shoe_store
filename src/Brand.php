@@ -58,7 +58,7 @@
 
         function addStore($store)
         {
-            $GLOBALS['DB']->exec("INSERT INTO store_brands (store_id, brand_id) VALUES ({$this->id}, {$store->getId()});");
+            $GLOBALS['DB']->exec("INSERT INTO stores_brands (brand_id, store_id) VALUES ({$this->id}, {$store->getId()});");
         }
 
         function getStorelist()
@@ -67,7 +67,7 @@
                 JOIN stores_brands ON (stores_brands.brand_id = brands.id)
                 JOIN stores ON (stores.id = stores_brands.store_id)
                 WHERE brands.id = {$this->getId()};");
-                //query doesnt throw errors but doesnt seem to make connection either ``
+                //query doesnt throw errors but doesnt seem to make connection either
 
             $store_array = array();
             foreach ($returned_stores as $store)

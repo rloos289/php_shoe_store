@@ -30,8 +30,8 @@
     {
         protected function teardown()
         {
-            // Store::deleteAll();
-            // Brand::deleteAll();
+            Store::deleteAll();
+            Brand::deleteAll();
         }
 //--static function tests--
 
@@ -103,51 +103,49 @@
             $new_brand->addStore($new_store);
             $result = $new_brand->getStorelist();
 
-            var_dump($result);
-
             $this->assertEquals([$new_store],$result);
         }
 
-        // function test_brand_getStorelist()
-        // {
-        //     $brand_name = "Nike";
-        //     $new_brand = New Brand ($brand_name);
-        //     $new_brand->save();
-        //
-        //     $store_name = "Nordstrom";
-        //     $new_store = New Store ($store_name);
-        //     $new_store->save();
-        //
-        //     $store_name2 = "Payless";
-        //     $new_store2 = New Store ($store_name2);
-        //     $new_store2->save();
-        //
-        //     $new_brand->addStore($new_store);
-        //     $new_brand->addStore($new_store2);
-        //     $result = $new_brand->getStorelist();
-        //
-        //     $this->assertEquals([$new_store, $new_store2],$result);
-        // }
+        function test_brand_getStorelist()
+        {
+            $brand_name = "Nike";
+            $new_brand = New Brand ($brand_name);
+            $new_brand->save();
 
-        // function test_brand_deleteStore()
-        // {
-        //     $brand_name = "Nike";
-        //     $new_brand = New Brand ($brand_name);
-        //     $new_brand->save();
-        //     $store_name = "Nordstrom";
-        //     $new_store = New Store ($store_name);
-        //     $new_store->save();
-        //     $store_name2 = "Payless";
-        //     $new_store2 = New Store ($store_name2);
-        //     $new_store2->save();
-        //
-        //     $new_brand->addStore($new_store);
-        //     $new_brand->addStore($new_store2);
-        //     $new_brand->deleteStore($new_store);
-        //     $result = $new_brand->getStorelist();
-        //
-        //     $this->assertEquals([$new_store2],$result);
-        // }
+            $store_name = "Nordstrom";
+            $new_store = New Store ($store_name);
+            $new_store->save();
+
+            $store_name2 = "Payless";
+            $new_store2 = New Store ($store_name2);
+            $new_store2->save();
+
+            $new_brand->addStore($new_store);
+            $new_brand->addStore($new_store2);
+            $result = $new_brand->getStorelist();
+
+            $this->assertEquals([$new_store, $new_store2],$result);
+        }
+
+        function test_brand_deleteStore()
+        {
+            $brand_name = "Nike";
+            $new_brand = New Brand ($brand_name);
+            $new_brand->save();
+            $store_name = "Nordstrom";
+            $new_store = New Store ($store_name);
+            $new_store->save();
+            $store_name2 = "Payless";
+            $new_store2 = New Store ($store_name2);
+            $new_store2->save();
+
+            $new_brand->addStore($new_store);
+            $new_brand->addStore($new_store2);
+            $new_brand->deleteStore($new_store);
+            $result = $new_brand->getStorelist();
+
+            $this->assertEquals([$new_store2],$result);
+        }
 
     }
 

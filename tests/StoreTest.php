@@ -30,8 +30,8 @@
     {
         protected function teardown()
         {
-            // Store::deleteAll();
-            // Brand::deleteAll();
+            Store::deleteAll();
+            Brand::deleteAll();
         }
 //--static function tests--
 
