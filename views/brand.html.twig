@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title></title>
+        <title>{{brand.getName}}</title>
     </head>
     <body>
         <h1>{{brand.getName}}</h1>
@@ -16,7 +16,7 @@
         {% else %}
         <p>Looks like no stores carry this brand yet.</p>
         {% endif %}
-        <p>Add a brand</p>
+        <p>Add a store</p>
             <form action="/brand/{{ brand. getId }}" method="post">
                 <select name="store_name">
                     {% for store in stores_all %}

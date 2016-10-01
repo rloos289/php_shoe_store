@@ -98,31 +98,22 @@
         return $app['twig']->render("brand.html.twig", array('brand' => $brand, 'stores_carried' => $stores, 'stores_all' => Store::getAll()));
     });
 
-    // $app->post("/teacher/{teacher_id}", function ($teacher_id) use ($app) {
-    // // add a student relationship to an individual teacher
-    // $teacher = Teacher::find($teacher_id);
-    // $student_id = $_POST['student_id'];
-    // $student = Student::find($student_id);
-    // $teacher->addStudent($student);
-    // return $app->redirect('/teacher/' . $teacher.getId());
-
-    // $app->post('/brand/{id}', function($id) use ($app) {
-    //     //add a brand to a store
-    //     $brand = Brand::find($id);
-    //     $store = new Store($_POST['store_input']);
-    //     $store->save();
-    //     $store = Store::find($store);
-    //     $brand->addStore($store);
-    //     $stores = $brand->getStorelist();
-    //     return $app['twig']->render("brand.html.twig", array('brand' => $brand, 'allstores' => store::getAll(), 'stores' => $stores));
-    // });
-
 //individual store pages
     $app->get("/store/{id}", function($id) use ($app) {
         //individual store home page
         $store = Store::find($id);
         $brands = $store->getBrandlist();
-        return $app['twig']->render("store.html.twig", array('store' => $store, 'brands_carried' => $brands, 'brands' => Brand::getAll()));
+        return $app['twig']->render("store.html.twig", array('store' => $store, 'brands_carried' => $brands, 'brands_all' => Brand::getAll()));
+    });
+
+    $app->post('/store/{id}', function($id) use ($app) {
+        //add store to brand relationship
+        $store = Store::find($id);
+        $brand_id = $_POST['brand_name'];
+        $brand = Brand::find($brand_id);
+        $store->addBrand($brand);
+        $brands = $store->getBrandlist();
+        return $app['twig']->render("store.html.twig", array('store' => $store, 'brands_carried' => $brands, 'brands_all' => Brand::getAll()));
     });
 
     $app->delete("/store/delete/{id}", function($id) use ($app) {
@@ -135,7 +126,8 @@
     $app->patch("/store/update/{id}", function ($id) use ($app) {
         $store = Store::find($id);
         $store->update($_POST['new_store_name']);
-        return $app['twig']->render("store.html.twig", array('store' => $store));
+        $brands = $store->getBrandlist();
+        return $app['twig']->render("store.html.twig", array('store' => $store, 'brands_carried' => $brands, 'brands_all' => Brand::getAll()));
     });
 
     return $app;
