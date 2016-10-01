@@ -61,17 +61,14 @@
         return $app['twig']->render ("addbrands.html.twig", array('store' => $store, 'brands' => $brands));
     });
 
-    $app->get("addbrands/{store_id}", function($store_id) use ($app){
+    $app->post("addbrands/{store_id}", function($store_id) use ($app){
         //takes brand and adds it to a store
-        $name = $_POST['brand_input'];
-        $new_brand = New Brand ($name);
-        $brand = Brand::find($)
-        $new_brand->save();
-        $store = Store::find($store_id);
-        $store->addbrand($new_brand);
-        $brands = $store->getBrandlist();
-        return $app['twig']->render ("store.html.twig", array('store' => $store, 'brands' => $brands));
-
+        $brand_id = $_POST['brand_input'];
+        $store = Store::getId($store_id);
+        $brand = Brand::getId($brand_id);
+        $store->addbrand($brand);
+        // return $app['twig']->render ("store.html.twig", array('store' => $store, 'brands' => $brands));
+        return $app->redirect('/store/' . $store.getId());
     });
 
     //stores pages
