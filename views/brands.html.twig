@@ -9,7 +9,7 @@
             <h1>Brands</h1>
             <ul>
             {% for brand in brands %}
-               <a href='/brands/{{brand.getId}}'><li> {{brand.getName}}</li></a>
+               <a href='/brand/{{brand.getId}}'><li> {{brand.getName}}</li></a>
             {% endfor %}
             </ul>
             <form action="/clearbrands" method="post">

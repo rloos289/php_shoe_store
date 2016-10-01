@@ -79,5 +79,11 @@
         Store::deleteAll();
         return $app->redirect('/stores');
     });
+
+//individual brand pages
+    $app->get('/brand/{id}', function($id) use ($app) {
+        $brand = Brand::find($id);
+        return $app['twig']->render("brand.html.twig", array('brand' => $brand));
+    });
     return $app;
 ?>
