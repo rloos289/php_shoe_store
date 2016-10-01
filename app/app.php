@@ -84,8 +84,27 @@
     $app->get('/brand/{id}', function($id) use ($app) {
         //lists individual brand information
         $brand = Brand::find($id);
-        return $app['twig']->render("brand.html.twig", array('brand' => $brand, 'stores' => Store::getAll()));
+        $stores = $brand->getStorelist();
+        return $app['twig']->render("brand.html.twig", array('brand' => $brand, 'stores_carried' => $stores, 'stores_all' => Store::getAll()));
     });
+
+    $app->post('/brand/{id}', function($id) use ($app) {
+        //add brand being in a store relationship
+        $brand = Brand::find($id);
+        $store_id = $_POST['store_name'];
+        $store = Store::find($store_id);
+        $brand->addStore($store);
+        $stores = $brand->getStorelist();
+        return $app['twig']->render("brand.html.twig", array('brand' => $brand, 'stores_carried' => $stores, 'stores_all' => Store::getAll()));
+    });
+
+    // $app->post("/teacher/{teacher_id}", function ($teacher_id) use ($app) {
+    // // add a student relationship to an individual teacher
+    // $teacher = Teacher::find($teacher_id);
+    // $student_id = $_POST['student_id'];
+    // $student = Student::find($student_id);
+    // $teacher->addStudent($student);
+    // return $app->redirect('/teacher/' . $teacher.getId());
 
     // $app->post('/brand/{id}', function($id) use ($app) {
     //     //add a brand to a store
@@ -103,7 +122,7 @@
         //individual store home page
         $store = Store::find($id);
         $brands = $store->getBrandlist();
-        return $app['twig']->render("store.html.twig", array('store' => $store));
+        return $app['twig']->render("store.html.twig", array('store' => $store, 'brands_carried' => $brands, 'brands' => Brand::getAll()));
     });
 
     $app->delete("/store/delete/{id}", function($id) use ($app) {

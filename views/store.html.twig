@@ -7,16 +7,22 @@
     <body>
         <h1>{{store.getName}}</h1>
 
-        <form action="/store/{{store.getId()}}" method="post">
-            <label>Add a store that carries this brand: </label>
-            <input type="text" name="brand_input" value="">
-            <button type="submit" name="button">Submit</button>
-        </form>
+        {% if brands_carried is not empty %}
+            <ul>
+                {% for brands_carried in brand %}
+                    <li>{{brand.getName}}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+        <p>Looks like this store doesn't carry any brands yet.</p>
+            <a href="/brands"><button type="button" name="button">Add a brand</button></a>
+        {% endif %}
 
         <form action="/store/delete/{{store.getId}}" method="post">
             <input type='hidden' name='_method' value='delete' />
             <button type="submit" name="button">Delete this store</button>
         </form>
+
         <form action="/store/update/{{store.getId}}" method="post">
             <input type='hidden' name='_method' value='patch' />
             <input type="text" name="new_store_name" value="">
