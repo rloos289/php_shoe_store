@@ -40,6 +40,7 @@
         return $app->redirect('/');
     });
 
+//brands page
     $app->get('/brands', function() use ($app) {
         //lists brands page that allows users to add and delete brands
         return $app['twig']->render("brands.html.twig", array('brands' => Brand::getAll()));
@@ -54,9 +55,29 @@
     });
 
     $app->post('/clearbrands', function() use ($app) {
+        //delete all brands from the brand page and the database
         Brand::deleteAll();
         return $app->redirect('/brands');
     });
 
+//stores page
+    $app->get('/stores', function() use ($app) {
+        //lists stores page that allows users to add and delete brands
+        return $app['twig']->render("stores.html.twig", array('stores' => Store::getAll()));
+    });
+
+    $app->post('/stores', function() use ($app) {
+        //adds a store to the stores page
+        $store_name = $_POST['store_input'];
+        $store = new Store($store_name);
+        $store->save();
+        return $app['twig']->render("stores.html.twig", array('stores' => Store::getAll()));
+    });
+
+    $app->post('/clearstores', function() use ($app) {
+        //delete all stores from the brand page and the database
+        Store::deleteAll();
+        return $app->redirect('/stores');
+    });
     return $app;
 ?>
