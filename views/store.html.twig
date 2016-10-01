@@ -17,5 +17,10 @@
             <input type='hidden' name='_method' value='delete' />
             <button type="submit" name="button">Delete this store</button>
         </form>
+        <form action="/store/update/{{store.getId}}" method="post">
+            <input type='hidden' name='_method' value='patch' />
+            <input type="text" name="new_store_name" value="">
+            <button type="submit" name="button">Change this store's name</button>
+        </form>
     </body>
 </html>

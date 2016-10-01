@@ -114,5 +114,11 @@
         return $app['twig']->render("home.html.twig", array('brands' => Brand::getAll(), 'stores' => Store::getAll()));
     });
 
+    $app->patch("/store/update/{id}", function ($id) use ($app) {
+        $store = Store::find($id);
+        $store->update($_POST['new_store_name']);
+        return $app['twig']->render("store.html.twig", array('store' => $store));
+    });
+
     return $app;
 ?>
