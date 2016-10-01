@@ -84,8 +84,7 @@
     $app->get('/brand/{id}', function($id) use ($app) {
         //lists individual brand information
         $brand = Brand::find($id);
-        $stores = $brand->getStorelist();
-        return $app['twig']->render("brand.html.twig", array('brand' => $brand, 'stores' => $stores));
+        return $app['twig']->render("brand.html.twig", array('brand' => $brand, 'stores' => Store::getAll()));
     });
 
     // $app->post('/brand/{id}', function($id) use ($app) {

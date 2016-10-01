@@ -7,17 +7,15 @@
     <body>
         <h1>{{brand.getName}}</h1>
 
-        <form action="/brand/{{brand.getId()}}" method="post">
-            <label>Add a store that carries this brand: </label>
-            <input type="text" name="store_input" value="">
-            <button type="submit" name="button">Submit</button>
-        </form>
-        <ul>
         {% if stores is not empty %}
+            <ul>
                 {% for stores in store %}
                     <li>{{store.getName}}</li>
                 {% endfor %}
-        {% endif %}
             </ul>
+        {% else %}
+        <p>Looks like there aren't any stores in the system yet.</p>
+            <a href="/stores"><button type="button" name="button">Add a store</button></a>
+        {% endif %}
     </body>
 </html>
