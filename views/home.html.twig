@@ -1,13 +1,20 @@
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Shoe Finder</title>
-  </head>
-  <body>
-      <a href='/brands'><button type="button" name="button">Brands</button></a>
-      <a href='/stores'><button type="button" name="button">Stores</button></a>
-      <form action="/clearall" method="post">
-          <button type="submit" name="button">Clear All</button></a>
-      </form>
-  </body>
+    <head>
+        <link href='/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+        <link href='/css/styles.css' rel='stylesheet' type='text/css'>
+        <title>Shoe Finder</title>
+    </head>
+    <body>
+        <h1>Shoe Finder</h1>
+        <div class="container">
+            <div class="btn-group">
+                <a href='/brands'><button class="btn btn-primary" type="button" name="button">Brands</button></a>
+                <br>
+                <a href='/stores'><button class="btn btn-primary" type="button" name="button">Stores</button></a>
+                <form action="/clearall" method="post">
+                    <button class="btn btn-warning" type="submit" name="button">Clear All</button></a>
+                </form>
+            </div>
+        </div>
+    </body>
 </html>

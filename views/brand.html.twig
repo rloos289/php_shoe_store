@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
+        <link href='/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+        <link href='/css/styles.css' rel='stylesheet' type='text/css'>
         <title>{{brand.getName}}</title>
     </head>
     <body>
         <h1>{{brand.getName}}</h1>
-
+        <div class="container">
         {% if stores_carried is not empty %}
         <p>Available in the following locations</p>
             <ul>
@@ -25,12 +26,15 @@
                         <option value= {{ store.getId }}> {{ store.getName }}</option>
                     {% endfor %}
                 </select>
-                <button type="submit" name="button">Add this store</button>
+                <br>
+                <button type="submit" class="btn btn-primary" name="button">Add this store</button>
             </form>
         {% else %}
         <p>Looks like there are no stores in the database, please go to the store page to add some</p>
         {% endif %}
-        <a href="/brands"><button type="button" name="button">Brands Page</button></a>
-        <a href="/"><button type="button" name="button">Home Page</button></a>
+        <a href="/brands"><button type="button" class="btn btn-primary" name="button">Brands Page</button></a>
+        <br>
+        <a href="/"><button type="button" class="btn btn-primary" name="button">Home Page</button></a>
+        </div>
     </body>
 </html>

@@ -1,29 +1,32 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
+        <link href='/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+        <link href='/css/styles.css' rel='stylesheet' type='text/css'>
         <title>Stores</title>
     </head>
     <body>
+        <h1>Stores</h1>
+        <div class="container">
+        <form action="/stores" method="post">
+            <label>Add a store</label>
+            <input type="text" name="store_input" value="" required>
+            </br>
+            <button type="submit" class="btn btn-primary" name="button">Add a store</button>
+        </form>
+        <a href='/'><button type="button" class="btn btn-primary" name="button">Home</button></a>
         {% if stores is not empty%}
-            <h1>Stores</h1>
             <ul>
             {% for store in stores %}
-               <a href='/store/{{store.getId}}'><li> {{store.getName}}</li></a>
+                <a href='/store/{{store.getId}}'><li> {{store.getName}}</li></a>
             {% endfor %}
             </ul>
             <form action="/clearstores" method="post">
-                <button type="submit" name="button">Delete all stores</button>
+                <button type="submit" class="btn btn-warning" name="button">Delete all stores</button>
             </form>
         {% else %}
-           <h1>Stores</h1>
            <p>There are no stores in the system yet</p>
         {% endif %}
-       <form action="/stores" method="post">
-           <label>Add a store</label>
-           <input type="text" name="store_input" value="">
-           <button type="submit" name="button">Add a store</button>
-       </form>
-       <a href='/'><button type="button" name="button">Home</button></a>
+        </div>
     </body>
 </html>
