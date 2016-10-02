@@ -8,6 +8,7 @@
         <h1>{{brand.getName}}</h1>
 
         {% if stores_carried is not empty %}
+        <p>Available in the following locations</p>
             <ul>
                 {% for store in stores_carried %}
                     <li>{{store.getName}}</li>
@@ -16,6 +17,7 @@
         {% else %}
         <p>Looks like no stores carry this brand yet.</p>
         {% endif %}
+        {% if stores_all is not empty %}
         <p>Add a store</p>
             <form action="/brand/{{ brand. getId }}" method="post">
                 <select name="store_name">
@@ -25,6 +27,9 @@
                 </select>
                 <button type="submit" name="button">Add this store</button>
             </form>
+        {% else %}
+        <p>Looks like there are no stores in the database, please go to the store page to add some</p>
+        {% endif %}
         <a href="/brands"><button type="button" name="button">Brands Page</button></a>
         <a href="/"><button type="button" name="button">Home Page</button></a>
     </body>

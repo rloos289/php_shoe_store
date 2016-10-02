@@ -8,6 +8,7 @@
         <h1>{{store.getName}}</h1>
 
         {% if brands_carried is not empty %}
+            <p>We carry the following brands of shoes</p>
             <ul>
                 {% for brand in brands_carried %}
                     <li>{{brand.getName}}</li>
@@ -16,6 +17,7 @@
         {% else %}
         <p>Looks like this store doesn't carry any brands yet.</p>
         {% endif %}
+        {% if brands_all is not empty %}
         <p>Add a brand</p>
             <form action="/store/{{ store.getId }}" method="post">
                 <select name="brand_name">
@@ -25,6 +27,9 @@
                 </select>
                 <button type="submit" name="button">Add this brand</button>
             </form>
+        {% else %}
+        <p>Looks like there are no brands in the database, please go to the brands page and add some</p>
+        {% endif %}
         <a href="/stores"><button type="button" name="button">Stores Page</button></a>
         <a href="/"><button type="button" name="button">Home Page</button></a>
         <form action="/store/delete/{{store.getId}}" method="post">

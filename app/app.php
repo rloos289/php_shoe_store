@@ -11,7 +11,7 @@
     // $DB = new PDO($server, $username, $password);
 
     //home mac
-    $server = 'mysql:host=localhost:8889;dbname=shoes';
+    $server = 'mysql:host=localhost:8889;dbname=shoes_test';
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);
@@ -33,7 +33,7 @@
         return $app['twig']->render("home.html.twig", array('brands' => Brand::getAll(), 'stores' => Store::getAll()));
     });
 
-    $app->post('/', function() use ($app) {
+    $app->post('/clearall', function() use ($app) {
         //clears all and returns to the homepage
         Store::deleteAll();
         Brand::deleteAll();
